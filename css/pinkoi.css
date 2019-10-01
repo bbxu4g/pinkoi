@@ -84,3 +84,14 @@ padding-top: 0;
    left:450px;
 
 }
+.card-img-top{
+    width: 200px;
+    height: 200px;
+}
+.card-deck{
+    height: 288px;
+}
+input{
+    width: 80px;
+
+}
