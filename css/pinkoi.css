@@ -1,0 +1,86 @@
+
+body{
+    font-family: Microsoft JhengHei;
+
+}
+
+
+.pink{
+    list-style: none;
+    display:inline;
+    float: left;
+ 
+}
+.inline>li{
+    list-style: none;
+    font-size: 8px;
+    display: inline;
+    color: black;
+    margin-right: 4px;
+}
+.a>li{
+    list-style: none;
+    font-size: 8px;
+
+}
+.container-fluid{
+    margin: 0 auto;
+}
+.pink:hover{
+     cursor: pointer;
+    border-bottom-style: solid;
+    border-color: #f5548c;    
+    height: 24px;
+}
+
+.block>li{
+    list-style: none;
+    color: gray;
+    margin: 6px 0;
+    font-size: 14px;
+}
+.bor{
+    border-style: solid;
+    border-width: 0.8px;
+    border-color: silver transparent;}
+.GG{
+   
+    /* opacity:0; */
+    
+}
+
+.ha>ul{
+    opacity:0; 
+    display: none;  
+    position: absolute;
+}
+
+.ha:hover>ul {
+    opacity:1;
+    display: block;
+    background-color: bisque;
+    z-index: 999;
+    
+
+}
+.ha>ul{
+   height: 80px;
+   padding: 1;
+   font-size: 14px;
+}
+.ha:hover {
+padding-top: 0;
+
+}
+.carousel-control-prev{
+    left: 400px;
+}
+.carousel-control-next{
+    left: 1200px;
+}
+
+.carousel-inner{
+    height: 400px;
+   left:450px;
+
+}
