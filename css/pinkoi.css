@@ -89,9 +89,16 @@ padding-top: 0;
     height: 200px;
 }
 .card-deck{
-    height: 288px;
+    height: 300px;width:200px;margin:5px;float:left;
 }
 input{
     width: 80px;
 
 }
+.detail {
+    height: 360px;overflow:hidden;width: 1800px;
+}
+.detail2 {
+    height: 360px;overflow:hidden;width: 1800px;
+}
+#cart{ cursor: pointer; }
