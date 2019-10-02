@@ -50,10 +50,48 @@ $(function () {
 function addcart() {
     var list = [];
     var num;
+    var name;
+    var price;
+    var isUpdate = false;
+
     $(".add").click(function () {
-        num = $(this).prev("input").val();//找出同一層的上一個
-        console.log($(this).prev("small").text());
-        list.push(num);
+        num = $(this).prev("input").val();//數量
+        name = $(this).parent(".card-body").children(".card-text:eq(0)").text();//名稱
+        price = $(this).parent(".card-body").children(".card-text:eq(1)").text().substr(5);//價格
+
+
+        var product = { name: name, price: price, num: num };
+
+        list.push(product);
+      //  console.log(list);
+
+        list.forEach(function(element) {
+            console.log(element.name);
+          });
     })
+
+    //     listBody.querySelectorAll('tr td:first-child').forEach(item => {
+    //         // 已經存在則直接更新數值
+    //         if (item.innerText === name) {
+    //             // 下一個同階層的元素
+    //             const n = item.nextElementSibling;
+    //             const p = n.nextElementSibling;
+    //             n.innerHTML = Number(n.innerHTML) + 1;
+    //             isUpdate = true;
+    //         }
+    //     });
+
+    //     // 如果不是更新餐點, 則加入新餐點項目
+    //     if (!isUpdate) {
+    //         // 插入在最後一列
+    //         const row = listBody.insertRow(listBody.rows.length);
+    //         row.insertCell(0).innerHTML = name;
+    //         row.insertCell(1).innerHTML = 1;
+    //         row.insertCell(2).innerHTML = price;
+    //         isUpdate = true;
+    //     }
+
+    //     UpdateCaculate();
+    // })
 }
 
