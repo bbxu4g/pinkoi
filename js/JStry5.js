@@ -17,7 +17,7 @@ $(function () {
             }
         },
         error: function () { //錯誤的時候執行
-       //     alert("ERROR!!!");
+            //     alert("ERROR!!!");
         }
     });
 
@@ -37,7 +37,7 @@ $(function () {
             addcart();
         },
         error: function () { //錯誤的時候執行
-          //  alert("ERROR!!!");
+            //  alert("ERROR!!!");
         }
     });
 
@@ -56,7 +56,7 @@ function addcart() {
         var product = { name: name, price: price, num: num };
         listpush(product);
     })
-    
+
 }
 
 function listpush(product) {
@@ -65,6 +65,7 @@ function listpush(product) {
     var j = 0;
     var i = 0;
     var name = product.name;
+    console.log("A");
 
     if (isUpdate == false) { list.push(product); isUpdate = true; }
     else {
@@ -74,6 +75,29 @@ function listpush(product) {
         });
         if (isUpdate == true && j == 0) { list.push(product); }
     };
-    console.log(list);
+    list.forEach(function (e) {
+        console.log("A");
+        // $("#cartlist").append( // 把每一行加進去
+        //     "<tr>" +
+        //     "<td class='index'>" + e.name + "</td>" + // 給class是為了修改可以抓到要的td
+        //     "<td class='name'>" + e.price + "</td>" + // 同上 :")
+        //     "<td class='price'>" + e.num + "</td>" + // :")
+        //     "</tr>"
+        // )
+    });
+
+
 }
 
+// // 頁碼
+// function pageCount() {
+//     $("#form-page").empty();
+//     var count = 5; // 一頁的筆數
+//     var total = $("tr").length; // 總共的筆數
+//     var page = Math.ceil(total / count); // 頁數
+//     for (var i = 1; i <= page; i++) {
+//         $("#form-page").append('<button>' + i + '</button>');
+//     }
+//     $("tr").hide();
+//     $("tr").slice(0, 5).show();
+// }
