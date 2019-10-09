@@ -1,5 +1,5 @@
 var isUpdate = false;
-var list = [];
+var itemList = [];
 $(function () {
 
     $.ajax({
@@ -48,6 +48,7 @@ function addcart() {
     var name;
     var price;
 
+
     $(".add").click(function () {
         num = $(this).prev("input").val();//數量
         name = $(this).parent(".card-body").children(".card-text:eq(0)").text();//名稱
@@ -55,49 +56,65 @@ function addcart() {
 
         var product = { name: name, price: price, num: num };
         listpush(product);
-    })
 
+    })
 }
 
 function listpush(product) {
-    list;
+    itemList;
     isUpdate;
     var j = 0;
     var i = 0;
     var name = product.name;
     console.log("A");
-
-    if (isUpdate == false) { list.push(product); isUpdate = true; }
+    if (getItem("itemList")) {
+        itemList = getJsonItem("itemList");
+        console.log(itemList);
+    }
+    if (isUpdate == false) { itemList.push(product); isUpdate = true; }
     else {
-        list.forEach(function (element) {
-            if (name == element.name) { isUpdate = true; j++; list.splice(i, 1, product); }
+        itemList.forEach(function (element) {
+            if (name == element.name) { isUpdate = true; j++; itemList.splice(i, 1, product); }
             i++;
         });
-        if (isUpdate == true && j == 0) { list.push(product); }
+        if (isUpdate == true && j == 0) { itemList.push(product); }
     };
-    list.forEach(function (e) {
-        console.log("A");
-        // $("#cartlist").append( // 把每一行加進去
-        //     "<tr>" +
-        //     "<td class='index'>" + e.name + "</td>" + // 給class是為了修改可以抓到要的td
-        //     "<td class='name'>" + e.price + "</td>" + // 同上 :")
-        //     "<td class='price'>" + e.num + "</td>" + // :")
-        //     "</tr>"
-        // )
+    setJsonItem("itemList", itemList);
+    // 把List存到LocalStorage(Json格式)
+    console.log(itemList);
+
+
+    itemList.forEach(e => {
+        //  console.log(e);
+
+        $("#cartlist").append(
+            "<div class='col-md-4 col-sm-6 col-xs-12 itemblock' >" +
+            "<div class='item' >" +
+            "<div class='info'>" +
+            "<span class='name'> " + e.name + "</span>" +
+            "<span class='price'>" + e.price + "</span>" +
+            "</div>"
+        );
     });
+
+
+
 
 
 }
 
-// // 頁碼
-// function pageCount() {
-//     $("#form-page").empty();
-//     var count = 5; // 一頁的筆數
-//     var total = $("tr").length; // 總共的筆數
-//     var page = Math.ceil(total / count); // 頁數
-//     for (var i = 1; i <= page; i++) {
-//         $("#form-page").append('<button>' + i + '</button>');
-//     }
-//     $("tr").hide();
-//     $("tr").slice(0, 5).show();
-// }
+//LocalStorage Simpler
+function setItem(key, param) {
+    window.localStorage.setItem(key, param); //存檔
+};
+function setJsonItem(key, param) {
+    window.localStorage.setItem(key, JSON.stringify(param)); // 存Json
+};
+function getItem(key) {
+    return window.localStorage.getItem(key); //讀檔
+};
+function getJsonItem(key) {
+    var data = window.localStorage.getItem(key) // 取json
+    return JSON.parse(data);
+};
+
