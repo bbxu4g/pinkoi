@@ -20,16 +20,15 @@ $(function () {
             "<tr>" +
             "<td><input type='checkbox'></td>" +
             "<td>" + e.name + "</td>" +
-            "<td>$" + e.price +"</td>"+
-            "<td><button class='butdec'>-</button><input class'num' value='"+ e.num +"'><button class='butadd'>+</button></td>"+
-            "<td><p class='pricetotal'>$" + e.price*1*e.num*1 +"</p></td>"+
+            "<td class='singleprice'>" + e.price +"</td>"+
+            "<td><button class='butdec' onclick='Calculation()'>-</button><input class='num' value='"+ e.num +"'><button class='butadd' onclick='Calculation()'>+</button></td>"+
+            "<td><p class='pricetotal'>" + e.price*e.num +"</p></td>"+
             "<td><p class='del'>刪除</p></td>"+
             "</tr >"    
-        );
-        
+        );        
     });
 
-    console.log($(".pricetotal").html());
+  //  console.log($(".pricetotal").html());
   
     //---刪除清單
     $(".del").click(function(){
@@ -41,14 +40,19 @@ $(function () {
         var num=($(this).prev()).val(); 
         num=num*1+1;
         $(this).prev().val(num);
-        
+        var price=$(this).closest('tr').find(".singleprice").text();
+        price=num*price;
+        $(this).closest('tr').find(".pricetotal").text(price);      
     })
     $(".butdec").click(function(){
         var num=($(this).next()).val();
         if(num==0){num=0;}
         else {num=num*1-1;}
         $(this).next().val(num);
-        console.log($(this).parents().parents().children(".pricetotal").text());
+        var price=$(this).closest('tr').find(".singleprice").text();
+        price=num*price;
+        console.log(num);
+        $(this).closest('tr').find(".pricetotal").text(price);     
     })
 
     
@@ -56,7 +60,12 @@ $(function () {
 
 
 
-
+function Calculation(){
+    var price;
+    var num;
+    //console.log( $(this));
+   
+}
 
 //LocalStorage Simpler
 function setItem(key, param) {
