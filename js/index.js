@@ -81,21 +81,8 @@ function listpush(product) {
     };
     setJsonItem("itemList", itemList);
     // 把List存到LocalStorage(Json格式)
-    console.log(itemList);
+  
 
-
-    itemList.forEach(e => {
-        //  console.log(e);
-
-        $("#cartlist").append(
-            "<div class='col-md-4 col-sm-6 col-xs-12 itemblock' >" +
-            "<div class='item' >" +
-            "<div class='info'>" +
-            "<span class='name'> " + e.name + "</span>" +
-            "<span class='price'>" + e.price + "</span>" +
-            "</div>"
-        );
-    });
 
 
 
