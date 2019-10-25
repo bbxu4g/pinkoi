@@ -22,13 +22,14 @@ $(function () {
             "<td>" + e.name + "</td>" +
             "<td>$" + e.price +"</td>"+
             "<td><button class='butdec'>-</button><input class'num' value='"+ e.num +"'><button class='butadd'>+</button></td>"+
-            "<td><p class'pricetotal'>$" + e.price +"</p></td>"+
+            "<td><p class='pricetotal'>$" + e.price*1*e.num*1 +"</p></td>"+
             "<td><p class='del'>刪除</p></td>"+
             "</tr >"    
         );
+        
     });
 
-
+    console.log($(".pricetotal").html());
   
     //---刪除清單
     $(".del").click(function(){
@@ -40,12 +41,14 @@ $(function () {
         var num=($(this).prev()).val(); 
         num=num*1+1;
         $(this).prev().val(num);
+        
     })
     $(".butdec").click(function(){
         var num=($(this).next()).val();
         if(num==0){num=0;}
         else {num=num*1-1;}
         $(this).next().val(num);
+        console.log($(this).parents().parents().children(".pricetotal").text());
     })
 
     
