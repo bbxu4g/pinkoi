@@ -33,6 +33,25 @@ $(function () {
     //---刪除清單
     $(".del").click(function(){
         $(this).closest("tr").remove();
+        //itemList.splice(itemList.indexOf($(this).closest("tr")), 1);
+        localStorage.removeItem("itemList");
+
+        
+    itemList.forEach(e => {
+        //  console.log(e);
+
+        $("#cartlist").append(
+            "<tr>" +
+            "<td><input type='checkbox'></td>" +
+            "<td>" + e.name + "</td>" +
+            "<td class='singleprice'>" + e.price +"</td>"+
+            "<td><button class='butdec' onclick='Calculation()'>-</button><input class='num' value='"+ e.num +"'><button class='butadd' onclick='Calculation()'>+</button></td>"+
+            "<td><p class='pricetotal'>" + e.price*e.num +"</p></td>"+
+            "<td><p class='del'>刪除</p></td>"+
+            "</tr >"    
+        );        
+    });
+       
     })
 
     //----計算數量
@@ -51,7 +70,6 @@ $(function () {
         $(this).next().val(num);
         var price=$(this).closest('tr').find(".singleprice").text();
         price=num*price;
-        console.log(num);
         $(this).closest('tr').find(".pricetotal").text(price);     
     })
 
