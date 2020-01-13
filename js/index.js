@@ -52,7 +52,7 @@ function addcart() {
     $(".add").click(function () {
         num = $(this).prev("input").val();//數量
         name = $(this).parent(".card-body").children(".card-text:eq(0)").text();//名稱
-        price = $(this).parent(".card-body").children(".card-text:eq(1)").text().substr(5);//價格
+        price = $(this).parent(".card-body").children(".card-text:eq(1)").text().substr(3);//價格
 
         var product = { name: name, price: price, num: num };
         listpush(product);
@@ -66,22 +66,29 @@ function listpush(product) {
     var j = 0;
     var i = 0;
     var name = product.name;
-    console.log("A");
+    console.log(name);
     if (getItem("itemList")) {
         itemList = getJsonItem("itemList");
         console.log(itemList);
     }
-    if (isUpdate == false) { itemList.push(product); isUpdate = true; }
+    if (itemList!=[]){isUpdate = true;}
+    if (isUpdate == false) { itemList.push(product); isUpdate = true; console.log("A"); }//購物車是空的
     else {
         itemList.forEach(function (element) {
-            if (name == element.name) { isUpdate = true; j++; itemList.splice(i, 1, product); }
-            i++;
+            console.log("B");//購物車有東西
+            if (name == element.name) {//檢查是否名稱有重複
+                isUpdate = true;
+                j++;
+                itemList.splice(i, 1, product);
+                console.log("C");
+            }
+            i++;//過去重複指累加數量
         });
-        if (isUpdate == true && j == 0) { itemList.push(product); }
+        if (isUpdate == true && j == 0) { itemList.push(product); console.log("D"); } //與購物車資料沒有重複
     };
     setJsonItem("itemList", itemList);
     // 把List存到LocalStorage(Json格式)
-  
+
 
 
 
